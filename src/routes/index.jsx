@@ -1,8 +1,9 @@
 import FrontLayout from "../layouts/FrontLayout";
-import Home from "../pages/Home";
+import Home from "../pages/HomePage";
 import ProductPage from "../pages/ProductsPage";
 import ProductDetailPage from "../pages/ProductDetailpage";
 import Cart from "../pages/CartPage";
+import NotFound from "../pages/NotFound";
 
 const routes = [
     {
@@ -26,6 +27,10 @@ const routes = [
             {
                 path: "cart",
                 element: <Cart/>
+            },
+            {
+                path: "*",
+                element: <NotFound/>
             }
         ]
     }
