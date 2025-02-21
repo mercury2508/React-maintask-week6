@@ -8,50 +8,47 @@ import LoginPage from "../pages/LoginPage";
 import AdminLayout from "../layouts/AdminLayout";
 import AdminProductPage from "../admin_pages/AdminProductPage";
 
-
 const routes = [
     {
         path: "/",
-        element: <FrontLayout/>,
+        element: <FrontLayout />,
         children: [
             {
                 path: "",
-                element: <Home/>
+                element: <Home />,
             },
             {
                 path: "products",
-                element: <ProductPage/>
+                element: <ProductPage />,
             },
             {
-                
                 path: "products/:id",
-                element: <ProductDetailPage/>
-                
+                element: <ProductDetailPage />,
             },
             {
                 path: "cart",
-                element: <Cart/>
+                element: <Cart />,
             },
             {
                 path: "login",
-                element: <LoginPage/>
-            }
-        ]
+                element: <LoginPage />,
+            },
+        ],
     },
     {
         path: "/admin",
-        element: <AdminLayout/>,
+        element: <AdminLayout />,
         children: [
             {
                 path: "",
-                element: <AdminProductPage/>
-            }
-        ]
+                element: <AdminProductPage />,
+            },
+        ],
     },
     {
         path: "*",
-        element: <NotFound/>
-    }
-]
+        element: <NotFound />,
+    },
+];
 
 export default routes;

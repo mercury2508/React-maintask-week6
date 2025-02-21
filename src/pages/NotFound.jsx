@@ -1,21 +1,21 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
-function NotFound(){
+function NotFound() {
     const navigate = useNavigate();
     useEffect(() => {
         setTimeout(() => {
-        navigate("/");
+            navigate("/");
         }, 3000);
     }, []);
 
-    return(
+    return (
         <>
             <div className="container">
                 <h3>頁面不存在，3秒後將自動導回首頁</h3>
             </div>
         </>
-    )
+    );
 }
 
 export default NotFound;
