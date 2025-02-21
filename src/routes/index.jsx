@@ -4,6 +4,10 @@ import ProductPage from "../pages/ProductsPage";
 import ProductDetailPage from "../pages/ProductDetailpage";
 import Cart from "../pages/CartPage";
 import NotFound from "../pages/NotFound";
+import LoginPage from "../pages/LoginPage";
+import AdminLayout from "../layouts/AdminLayout";
+import AdminProductPage from "../admin_pages/AdminProductPage";
+
 
 const routes = [
     {
@@ -29,10 +33,24 @@ const routes = [
                 element: <Cart/>
             },
             {
-                path: "*",
-                element: <NotFound/>
+                path: "login",
+                element: <LoginPage/>
             }
         ]
+    },
+    {
+        path: "/admin",
+        element: <AdminLayout/>,
+        children: [
+            {
+                path: "",
+                element: <AdminProductPage/>
+            }
+        ]
+    },
+    {
+        path: "*",
+        element: <NotFound/>
     }
 ]
 

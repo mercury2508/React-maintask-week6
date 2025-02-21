@@ -2,12 +2,10 @@ import { NavLink, Outlet } from "react-router-dom";
 
 const routes = [
     { path: "/", name: "首頁" },
-    { path: "/products", name: "產品列表" },
-    { path: "/cart", name: "購物車" },
-    { path: "/login", name: "登入" },
+    { path: "/admin", name: "後台首頁" },
   ];
 
-function FrontLayout (){
+function AdminLayout (){
     return(
         <>
             <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
@@ -26,4 +24,4 @@ function FrontLayout (){
     )
 }
 
-export default FrontLayout;
+export default AdminLayout;

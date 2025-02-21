@@ -5,14 +5,14 @@ function NotFound(){
     const navigate = useNavigate();
     useEffect(() => {
         setTimeout(() => {
-        navigate("/products");
+        navigate("/");
         }, 3000);
     }, []);
 
     return(
         <>
             <div className="container">
-                <h3>頁面不存在，3秒後將自動導回產品列表</h3>
+                <h3>頁面不存在，3秒後將自動導回首頁</h3>
             </div>
         </>
     )
