@@ -33,7 +33,12 @@ function LoginPage() {
                 const { token, expired } = res.data;
                 document.cookie = `hexToken=${token}; expires=${new Date({ expired })}`;
                 axios.defaults.headers.common["Authorization"] = token;
-                navigate("/admin");
+                console.log(res);
+                if(res.data?.success){
+                    navigate("/admin");
+                } else{
+                    alert(res.data?.error?.message);
+                }
             } catch (error) {
                 alert(error.response.data?.error?.message);
             }

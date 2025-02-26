@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Pagination from "../component/Pagination";
 import DeleteProductModal from "../component/DeleteProductModal";
 import ProductModal from "../component/ProductModal";
+import { useNavigate } from "react-router-dom";
 
 const baseUrl = import.meta.env.VITE_BASE_URL;
 const apiPath = import.meta.env.VITE_API_PATH;
@@ -22,10 +23,35 @@ const defaultModalState = {
 };
 
 function AdminProductPage() {
-    // 預設取得產品
+    const navigate = useNavigate();
+
+    // 自動檢查是否已登入
     useEffect(() => {
-        getProducts();
+        const token = document.cookie.replace(
+            // eslint-disable-next-line no-useless-escape
+            /(?:(?:^|.*;\s*)hexToken\s*\=\s*([^;]*).*$)|^.*$/,
+            "$1"
+        );
+        if (!token) {
+            navigate("/login");
+        }
+        axios.defaults.headers.common["Authorization"] = token;
+        checkUserLogin();
     }, []);
+
+    // 確認使用者是否已登入
+    const checkUserLogin = async () => {
+        try {
+            const res = await axios.post(`${baseUrl}/api/user/check`);
+            if(!res.data?.success){
+                alert(res.data?.message)
+            } else{
+                getProducts();
+            }
+        } catch (error) {
+            alert(error.response.data.message);
+        }
+    };
 
     // 取得產品列表
     const getProducts = async (page = 1) => {
@@ -56,8 +82,7 @@ function AdminProductPage() {
     const [isProductModalOpen, setIsProductModalOpen] = useState(false);
 
     // 控制開關DeleteProductModal
-    const [isDeleteProductModalOpen, setIsDeleteProductModalOpen] =
-        useState(false);
+    const [isDeleteProductModalOpen, setIsDeleteProductModalOpen] = useState(false);
 
     // 開啟modal，點編輯的話則帶入產品原先內容
     const openModal = (mod, product) => {
